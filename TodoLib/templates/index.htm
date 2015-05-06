@@ -1,98 +1,63 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Programmierpraktikum To-Do Liste</title>
-		<link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
-		<link rel="stylesheet" href="{% static "css/bootstrap-theme.min.css" %}">
-		<link rel="stylesheet" href="{% static "css/style.css" %}">
-		<script src="js/jquery-1.11.2.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-	</head>
-	<body>
-		
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Todo-Liste</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Start</a></li>
-			<li><a href="/howto">Howto</a></li>
-            <li><a href="/impressum">Impressum</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+{% include "header.htm" with startClass="active" %}
+        <h1>Tasks</h1>
+		<a href="/add" class="btn btn-default">Add task</a>
+			<div id="no-more-tables">
+		    <table class="table table-responsive table-striped">
 
-    <div class="container">
+		        <thead>
 
-      <div class="content">
-        <h1>Todos</h1>
-		<a href="/add" class="btn btn-default">Add To-Do</a>
-	    <table class="table">
+		            <tr>
+						
+						 <th>Title</th>
+						
+						<th>Status</th>
 
-	        <thead>
+		               
 
-	            <tr>
-					<th>Status</th>
+		                <th>Deadline</th>
 
-	                <th>TODO</th>
-
-	                <th>Deadline</th>
-
-	                <th>Description</th>
+		                <th>Description</th>
                 
-	                <th>Submit</th>
-				
-					<th>Erase</th>
-				
-					<th>Edit</th>
-				
-	            </tr>
+						<th>Edit</th>
+					
+						<th>Delete</th>
+		            </tr>
 
-	        </thead>
+		        </thead>
 
-	        <tbody>
+		        <tbody>
 
 
-			{% if todos %} 
-            {% for todo in todos %}           
-	            <tr class="success">
+				{% if todos %} 
+	            {% for todo in todos %}           
+		            <tr {% if todo.status >= 100 %} class="success" {%endif%}>
 				
-	                <td>{{todo.status}}%</td>
+		                
                 
-	                <td>{{todo.title}}</td>
+		                <td data-title="Title: ">{{todo.title}}</td>
+						
+						<td data-title="Status: ">{{todo.status}}%</td>
 
-	                <td>{{todo.deadline}}</td>
+		                <td data-title="Deadline: ">{{todo.deadline}}</td>
 
-	                <td>{{todo.description}}</td>
-                
-	                <td> <button type="submit" class="btn btn-default">Submit</button> </td>
+		                <td data-title="Description: ">{{todo.description}}</td>
+					
+						<td class="todo-edit"> <a href="/{{todo.id}}" class="btn btn-default">Edit</a></td>    
 	            
-		            <td> <button type="erease" class="btn btn-default">Erase</button> </td>
+			            <td class="todo-delete"> <a href="/delete/{{todo.id}}" class="btn btn-danger">Delete</a> </td>
 		         
-			        <td> <a href="bearbeiten.htm" class="btn btn-default">Edit</a></td>    			                
+			       			                
             
-	            </tr>
-				{% endfor %}
+		            </tr>
+					{% endfor %}
 
-			{% else %}
-			Im Moment existieren keine Todos.
-			{% endif %}
-	        </tbody>
+				{% else %}
+				<td>Im Moment existieren keine Todos.</td>
+				{% endif %}
+		        </tbody>
 
-	    </table>
-      </div>
+		    </table>
+	</div>
+      
 
-    </div>
-
-	</body>
-</html>
+{% include "footer.htm" %}
