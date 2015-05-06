@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from .models import Task
-from django.views.generic.edit import CreateView, UpdateView
+from .forms import TaskChecker
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 def index(request):
 	template = loader.get_template('index.htm')   
@@ -16,20 +17,31 @@ def add(request):
 def howto(request):
 	template = loader.get_template('howto.htm')   
 	return HttpResponse(template.render()) 
-def bearbeiten(request):
-	template = loader.get_template('bearbeiten.htm')   
-	return HttpResponse(template.render()) 
 def impressum(request):
 	template = loader.get_template('impressum.htm')   
 	return HttpResponse(template.render()) 
 
 class TaskCreate(CreateView):
-	model = Task
-	fields = ['title','description','deadline','status']
+    model = Task
+   
+    title = "Add new task"
+    form_class = TaskChecker
+   
 
 class TaskUpdate(UpdateView):
+    model = Task
+    
+    title = "Edit task"
+    form_class = TaskChecker
+
+    
+class TaskFinish(UpdateView):
 	model = Task
-	fields = ['title','description','deadline','status']
+	fields = ['finished']
+    
+class TaskDelete(DeleteView):
+    model = Task
+    success_url = index
 
 
 

@@ -40,3 +40,66 @@
 .control-group {
 	margin-top:10px;
 }
+
+
+
+/* no-more-tables - http://bootsnipp.com/snippets/featured/no-more-tables-respsonsive-table 
+Etwas erweitert
+*/
+@media only screen and (max-width: 800px) {
+	
+	tr.success {
+		background:rgb(223, 240, 216) !important;
+	}
+	
+	#no-more-tables table {
+		border:none;
+	}
+    
+    /* Force table to not be like tables anymore */
+	#no-more-tables table, 
+	#no-more-tables thead, 
+	#no-more-tables tbody, 
+	#no-more-tables th, 
+	#no-more-tables td, 
+	#no-more-tables tr { 
+		display: block; 
+	}
+ 
+	/* Hide table headers (but not display: none;, for accessibility) */
+	#no-more-tables thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+ 
+	#no-more-tables tr { 
+		border: 1px solid #ccc; 
+		margin:10px 0;
+	}
+ 
+	#no-more-tables td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		white-space: normal;
+		text-align:left !important;
+		
+	}
+	/*
+	Label the data
+	*/
+	#no-more-tables td:before { font-weight:bold; content: attr(data-title); }
+	
+	#no-more-tables .todo-edit {
+		margin-left:5px !important;
+	}
+	#no-more-tables .todo-edit, #no-more-tables .todo-delete {
+		
+		display:inline-block !important;
+		padding:0;
+		line-height:0;
+		margin:10px 5px 10px 0;
+	}
+}
