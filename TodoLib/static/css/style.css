@@ -90,7 +90,12 @@ Etwas erweitert
 	/*
 	Label the data
 	*/
-	#no-more-tables td:before { font-weight:bold; content: attr(data-title); }
+	#no-more-tables td:before { 
+		font-weight:bold; 
+		content: attr(data-title);
+		display:inline-block;
+		min-width:25%;
+	 }
 	
 	#no-more-tables .todo-edit {
 		margin-left:5px !important;

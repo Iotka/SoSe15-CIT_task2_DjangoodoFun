@@ -7,9 +7,12 @@
 		        <thead>
 
 		            <tr>
+						
+						 <th>Title</th>
+						
 						<th>Status</th>
 
-		                <th>Title</th>
+		               
 
 		                <th>Deadline</th>
 
@@ -29,9 +32,11 @@
 	            {% for todo in todos %}           
 		            <tr {% if todo.status >= 100 %} class="success" {%endif%}>
 				
-		                <td data-title="Status: ">{{todo.status}}%</td>
+		                
                 
 		                <td data-title="Title: ">{{todo.title}}</td>
+						
+						<td data-title="Status: ">{{todo.status}}%</td>
 
 		                <td data-title="Deadline: ">{{todo.deadline}}</td>
 
